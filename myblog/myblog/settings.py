@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'theblog',
     'members',
     'ckeditor',
+    'algoliasearch_django'
 ]
+
+
+ALGOLIA = {
+    'APPLICATION_ID': 'AFS0O20ZBP',
+    'API_KEY': '783461f247a945f6f3d4abbd6c1d93c2'
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

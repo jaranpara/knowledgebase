@@ -2,29 +2,58 @@
 
 {% block content %}
 
-<h1> BookMe Blog Posts</h1>
+<br>
+<h1 align="center"> How can we help?</h1>
+<br>
 
-<ul>
-{% for post in object_list %}
-	<li><a href= "{% url 'article-detail' post.pk %}" 
-		>{{post.title}}</a> - <a href= "{% url 'category' post.category|slugify %}" >{{post.category}}</a> - by {{post.author.first_name}} {{post.author.last_name }} - {{post.post_date}} <small>
+<!-- <form action="{% url 'searchbar' %}" method="get"> -->
+  <!-- <input type="text" name="search"/>  -->
+  <!-- <button type="submit">Search</button>  -->
+<!-- <div class="input-group"> -->
+<div class="ais-InstantSearch">
+	<div id="searchbox" class="ais-SearchBox"></div>
+	<div id="hits"></div>
+</div>
+<!--   <input type="text" name="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" />
+  <button type="submit" class="btn btn-outline-primary">Search</button> -->
+</div>
+<!-- </form> -->
+<br>
+<br>
+<br>
+
+        <h1>Getting Started</h1>
+			<ul>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+					{% for post in object_list %}
+						    <li><a href= "{% url 'article-detail' post.pk %}" 
+							>{{post.title}}</a> - <a href= "{% url 'category' post.category|slugify %}" >{{post.category}}</a> - by {{post.author.first_name}} {{post.author.last_name }} - {{post.post_date}} <small>
 
 
-			 {% if user.is_authenticated %}  
-					 	{% if user.id == post.author.id %}
-					- <a href="{% url 'update_post' post.pk %}">(
-					Edit)</a>
+								 {% if user.is_authenticated %}  
+										 	{% if user.id == post.author.id %}
+										- <a href="{% url 'update_post' post.pk %}">(
+										Edit)</a>
 
-					<a href="{% url 'delete_post' post.pk %}">(
-					Delete)</a>
-					{% endif %}
-			{% endif %}
+										<a href="{% url 'delete_post' post.pk %}">(
+										Delete)</a>
+										{% endif %}
+								{% endif %}
 
-		</small><br/>
-	{{ post.snippet }}</li><br/>
-{% endfor%}
-</ul>
+									</small><br/>
+								{{ post.snippet }}<br/>
+							{% endfor%}
+							</li>
+						</div>
+					</div>
+				</div>	
+			</ul>
 
-
+		</div>
+	</div>
+</section>
 
 {% endblock %}

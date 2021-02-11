@@ -8,6 +8,11 @@ from django.http import HttpResponseRedirect
 #def home(request):
 #	return render(request, 'home.html', {})
 
+def searchbar(request):
+	if request.method == 'GET':
+		search = request.GET.get('search')
+		post = Post.objects.all().filter(title__contains=search)
+		return render(request, 'search.html', {'post': post})
 
 def LikeView(request, pk):
 	post = get_object_or_404(Post, id=request.POST.get('post_id'))
@@ -107,5 +112,4 @@ class DeletePostView(DeleteView):
 	model = Post
 	template_name = 'delete_post.html'
 	success_url = reverse_lazy('home')
-
 	
